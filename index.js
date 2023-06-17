@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 const uri =
-  "mongodb+srv://dbuser1:BXrVoFWHlz4mGHBU@cluster0.ddhlldi.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://languagecourse:AtuTJgQOstdyInDR@cluster0.ddhlldi.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -53,7 +53,6 @@ async function run() {
       // console.log("already", alreadyBooked);
       if (
         booking.studentEmail === alreadyBooked?.studentEmail &&
-        booking.studentPhone === alreadyBooked?.studentPhone &&
         booking.courseDetail === alreadyBooked.courseDetail
       ) {
         return res.status(401).send();
@@ -63,12 +62,12 @@ async function run() {
         (booking.studentPhone === alreadyBooked?.studentPhone &&
           booking.courseDetail !== alreadyBooked.courseDetail)
       ) {
-        const result = await bookingsColletion.insertOne(booking);
-        return res.send(result);
+        // const result = await bookingsColletion.insertOne(booking);
+        // return res.send(result);
       }
 
-      const result = await bookingsColletion.insertOne(booking);
-      res.send(result);
+      // const result = await bookingsColletion.insertOne(booking);
+      // res.send(result);
     });
 
     app.get("/bookings", async (req, res) => {
